@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <button>Good Day</button>
+        <script type="text/javascript">
+            // global configuration
+            var config = {
+                baseAudioUrl: 'http://hangoutmediastarter.appspot.com/static/',
+                sound: {
+                    loop: false,
+                    localOnly: false
+                }
+            };
+            // jquery's document ready
+            $(document).ready(function() {
+                // on button click, play sound to all hangout participants
+                $('button').on('click', function() {
+                    // sound source url
+                    var soundSourceUrl = config.baseAudioUrl + 'goodday.wav';
+                    
+                    // create the sound using the google hangout library
+                    var soundObject = gapi.hangout.av.effects
+                                .createAudioResource(soundSourceUrl)
+                                .createSound(config.sound);
+
+                    // play the sound
+                    soundObject.play();
+                });
+            });
+        </script>
+    </body>
+</html>
